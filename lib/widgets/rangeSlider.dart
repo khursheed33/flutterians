@@ -8,14 +8,16 @@ class FlutteriansRangeSlider extends StatefulWidget {
 }
 
 class _FlutteriansRangeSliderState extends State<FlutteriansRangeSlider> {
-  var sliderVal1 = 20.0;
-  var sliderVal2 = 40.0;
-  var sliderVal3 = 80.0;
-  RangeValues _currentRangeVal1 = RangeValues(20, 40);
-  RangeValues _currentRangeVal2 = RangeValues(40, 80);
-  RangeValues _currentRangeVal3 = RangeValues(80, 100);
+  RangeValues _currentRangeVal1 = RangeValues(0, 100);
+  RangeValues _currentRangeVal2 = RangeValues(0, 100);
+  RangeValues _currentRangeVal3 = RangeValues(0, 100);
+  double start2 = 0;
+  double start3 = 0;
+
   @override
   Widget build(BuildContext context) {
+    print(
+        "START2: ${_currentRangeVal2.start} - END2: ${_currentRangeVal2.end}");
     return Scaffold(
       appBar: AppBar(
         title: Text("Range Slider"),
@@ -42,21 +44,26 @@ class _FlutteriansRangeSliderState extends State<FlutteriansRangeSlider> {
                 onChanged: (val) {
                   setState(() {
                     _currentRangeVal1 = val;
+                    start2 = val.end;
+                    _currentRangeVal2 = RangeValues(start2, 100);
+                    print("START2: $start2");
                   });
                 }),
             SizedBox(height: 20),
             RangeSlider(
                 values: _currentRangeVal2,
-                min: _currentRangeVal1.start,
-                max: _currentRangeVal2.end,
+                min: 0,
+                max: 100,
                 divisions: 5,
                 labels: RangeLabels(
-                  _currentRangeVal2.start.round().toString(),
-                  _currentRangeVal2.end.round().toString(),
+                  start2.round().toString(),
+                  100.round().toString(),
                 ),
                 onChanged: (val) {
                   setState(() {
                     _currentRangeVal2 = val;
+                    start3 = val.end;
+                    _currentRangeVal3 = RangeValues(start3, 100);
                   });
                 }),
             SizedBox(height: 20),
@@ -66,8 +73,8 @@ class _FlutteriansRangeSliderState extends State<FlutteriansRangeSlider> {
                 max: 100,
                 divisions: 5,
                 labels: RangeLabels(
-                  _currentRangeVal3.start.round().toString(),
-                  _currentRangeVal3.end.round().toString(),
+                  start3.round().toString(),
+                  100.round().toString(),
                 ),
                 onChanged: (val) {
                   setState(() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterians/widgets/expansionPanel.dart';
 import 'package:flutterians/widgets/rangeSlider.dart';
 
 class FlutteriansHomepage extends StatelessWidget {
